@@ -606,6 +606,26 @@
       <div class="ft">Para saber si un trade es bueno, mirá la plata real en el bolsillo. A toda proyección de ganancia, restale el <b>20% de honorarios de asesoría</b> para obtener la <b>Ganancia Neta</b>. Cuentas claras conservan carteras.</div>
     </div>
 
+    <!-- TABLA DE RENDIMIENTO EN VIVO -->
+    <div class="rendimiento-box" style="margin-bottom: 24px; background: var(--navy-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px;">
+      <h3 style="font-size: 16px; font-weight: 800; margin-bottom: 15px; color: var(--gold);">📊 Seguimiento de Portafolio en Vivo</h3>
+      <div style="overflow-x: auto;">
+        <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 13px;">
+          <thead>
+            <tr style="border-bottom: 1px solid var(--line); color: var(--muted-2);">
+              <th style="padding: 10px 8px;">Activo</th>
+              <th style="padding: 10px 8px;">Precio Inicial (1/7/26)</th>
+              <th style="padding: 10px 8px;">Precio Actual</th>
+              <th style="padding: 10px 8px; text-align: right;">Ganancia Neta</th>
+            </tr>
+          </thead>
+          <tbody id="tabla-rendimientos" style="color: var(--ink);">
+            <tr><td colspan="4" style="padding: 15px; text-align: center; color: var(--muted);">Conectando con el mercado...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
     <div class="profiles">
       <article class="prof mod">
         <div class="ph">
@@ -690,6 +710,79 @@
   // initial bars for the first visible panel
   animateBars(panels[0]);
 })();
+</script>
+
+<script>
+// Valores iniciales seteados al 1/7/2026
+const portafolio = [
+  { ticker: "PBR", query: "PBR", inicial: 15.93 },
+  { ticker: "VALE", query: "VALE", inicial: 14.87 },
+  { ticker: "ITUB", query: "ITUB", inicial: 8.07 },
+  { ticker: "EMBJ", query: "ERJ", inicial: 63.02 }, // Muestra EMBJ, busca ERJ
+  { ticker: "NU", query: "NU", inicial: 13.27 },
+  { ticker: "EWZ", query: "EWZ", inicial: 33.95 },
+  { ticker: "XP", query: "XP", inicial: 16.08 }
+];
+
+async function cargarPreciosAPI() {
+  const tbody = document.getElementById('tabla-rendimientos');
+  let htmlFilas = '';
+
+  for (let activo of portafolio) {
+    try {
+      // Usamos la API de Yahoo Finance a través de un proxy libre
+      const urlYahoo = `https://query1.finance.yahoo.com/v8/finance/chart/${activo.query}?interval=1d`;
+      const urlProxy = `https://api.allorigins.win/get?url=${encodeURIComponent(urlYahoo)}`;
+      
+      const respuesta = await fetch(urlProxy);
+      if (!respuesta.ok) throw new Error('Fallo en la red');
+      
+      const datosCrudos = await respuesta.json();
+      const datosYahoo = JSON.parse(datosCrudos.contents);
+      
+      // Extraemos el precio de mercado actual
+      const precioActual = datosYahoo.chart.result[0].meta.regularMarketPrice;
+      
+      // Cálculo de variación bruta
+      const variacionBruta = ((precioActual - activo.inicial) / activo.inicial) * 100;
+      
+      // Cálculo de Ganancia Neta restando 20% de honorarios sobre la rentabilidad positiva
+      const gananciaNeta = variacionBruta > 0 ? (variacionBruta * 0.80) : variacionBruta;
+      
+      // Estilos visuales
+      const colorTexto = gananciaNeta > 0 ? 'var(--green)' : (gananciaNeta < 0 ? 'var(--red)' : 'var(--ink)');
+      const signo = gananciaNeta > 0 ? '+' : '';
+
+      htmlFilas += `
+        <tr style="border-bottom: 1px solid rgba(255,255,255,0.04);">
+          <td style="padding: 12px 8px; font-weight: 700;">${activo.ticker}</td>
+          <td style="padding: 12px 8px; color: var(--muted);">US$${activo.inicial.toFixed(2)}</td>
+          <td style="padding: 12px 8px; font-weight: 600;">US$${precioActual.toFixed(2)}</td>
+          <td style="padding: 12px 8px; text-align: right; font-weight: 800; color: ${colorTexto};">
+            ${signo}${gananciaNeta.toFixed(2)}%
+          </td>
+        </tr>
+      `;
+    } catch (error) {
+      console.error(`No se pudo cargar la cotización de ${activo.ticker}`, error);
+      // Fila de fallback si falla la conexión de un ticker en particular
+      htmlFilas += `
+        <tr style="border-bottom: 1px solid rgba(255,255,255,0.04);">
+          <td style="padding: 12px 8px; font-weight: 700;">${activo.ticker}</td>
+          <td style="padding: 12px 8px; color: var(--muted);">US$${activo.inicial.toFixed(2)}</td>
+          <td style="padding: 12px 8px; color: var(--muted);">--</td>
+          <td style="padding: 12px 8px; text-align: right; color: var(--muted);">Error de red</td>
+        </tr>
+      `;
+    }
+  }
+  
+  // Reemplazamos el mensaje de carga por los datos finales
+  tbody.innerHTML = htmlFilas;
+}
+
+// Disparar la función ni bien carga la página
+document.addEventListener('DOMContentLoaded', cargarPreciosAPI);
 </script>
 </body>
 </html>
