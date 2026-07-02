@@ -216,6 +216,15 @@
   .assets-divider .lbl{font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);white-space:nowrap;display:flex;align-items:center;gap:8px}
 
   /* ---------- Strategies tab ---------- */
+  .fee-alert{
+    display:flex;gap:14px;align-items:flex-start;
+    border:1px solid var(--gold-line);background:var(--gold-soft);border-radius:var(--radius);
+    padding:18px 20px;margin-bottom:24px;
+  }
+  .fee-alert .fi{width:34px;height:34px;border-radius:9px;background:var(--gold);color:var(--navy);display:grid;place-items:center;font-weight:900;flex:none;font-size:16px}
+  .fee-alert .ft{font-size:13.5px;color:var(--ink)}
+  .fee-alert .ft b{color:var(--gold)}
+
   .profiles{display:grid;grid-template-columns:1fr 1fr;gap:18px}
   .prof{background:linear-gradient(180deg,var(--navy-3),var(--panel));border:1px solid var(--line);border-radius:16px;padding:24px;position:relative}
   .prof.mod{border-top:3px solid var(--blue-2)}
@@ -272,6 +281,7 @@
 </head>
 <body>
 
+<!-- Topbar -->
 <div class="topbar">
   <div class="wrap">
     <div class="brand">
@@ -282,6 +292,7 @@
   </div>
 </div>
 
+<!-- Hero -->
 <header class="hero">
   <div class="wrap">
     <div class="flagline"><i></i><i></i><i></i></div>
@@ -292,6 +303,7 @@
   </div>
 </header>
 
+<!-- Tabs -->
 <nav class="tabsbar">
   <div class="wrap">
     <div class="tabs" role="tablist" aria-label="Secciones del informe">
@@ -304,6 +316,7 @@
 
 <main class="wrap">
 
+  <!-- ===== PANEL 1: MACRO ===== -->
   <section class="panel active" id="p1" role="tabpanel" aria-labelledby="t1">
     <div class="section-head">
       <div class="kick">La foto macroeconómica</div>
@@ -368,6 +381,7 @@
     </div>
   </section>
 
+  <!-- ===== PANEL 2: ASSETS ===== -->
   <section class="panel" id="p2" role="tabpanel" aria-labelledby="t2">
     <div class="section-head">
       <div class="kick">Desglose de activos · Julio 2026</div>
@@ -377,6 +391,7 @@
 
     <div class="assets">
 
+      <!-- EWZ -->
       <article class="asset">
         <div class="top">
           <div>
@@ -405,6 +420,7 @@
         </div>
       </article>
 
+      <!-- PBR -->
       <article class="asset">
         <div class="top">
           <div>
@@ -433,6 +449,7 @@
         </div>
       </article>
 
+      <!-- VALE -->
       <article class="asset">
         <div class="top">
           <div>
@@ -461,6 +478,7 @@
         </div>
       </article>
 
+      <!-- NU -->
       <article class="asset">
         <div class="top">
           <div>
@@ -491,12 +509,14 @@
         </div>
       </article>
 
+      <!-- Divisor de sección: nuevas incorporaciones -->
       <div class="assets-divider">
         <span class="ln"></span>
         <span class="lbl">🆕 Nuevas incorporaciones · Industrial, Bancario &amp; Fintech</span>
         <span class="ln"></span>
       </div>
 
+      <!-- EMBRAER -->
       <article class="asset">
         <div class="top">
           <div>
@@ -525,6 +545,7 @@
         </div>
       </article>
 
+      <!-- ITUB -->
       <article class="asset">
         <div class="top">
           <div>
@@ -553,6 +574,7 @@
         </div>
       </article>
 
+      <!-- XP -->
       <article class="asset">
         <div class="top">
           <div>
@@ -584,6 +606,7 @@
     </div>
   </section>
 
+  <!-- ===== PANEL 3: STRATEGIES ===== -->
   <section class="panel" id="p3" role="tabpanel" aria-labelledby="t3">
     <div class="section-head">
       <div class="kick">Armado de carteras</div>
@@ -591,8 +614,14 @@
       <p>Las decisiones se estructuran según el perfil de riesgo de cada inversor. Antes de cualquier ejecución, definí el tuyo.</p>
     </div>
 
+    <div class="fee-alert">
+      <div class="fi">%</div>
+      <div class="ft">Para saber si un trade es bueno, mirá la plata real en el bolsillo. A toda proyección de ganancia en vivo se le resta automáticamente el <b>20% de honorarios de asesoría</b> para obtener la <b>Ganancia Neta real</b>. Cuentas claras conservan carteras.</div>
+    </div>
+
     <div class="profiles">
       
+      <!-- PERFIL MODERADO -->
       <article class="prof mod">
         <div class="ph">
           <div class="pico">🛡️</div>
@@ -600,8 +629,9 @@
         </div>
         <div class="obj"><b>Objetivo:</b> flujo de caja constante y cobrar en dólares, sin importar quién gane la elección.</div>
         
+        <!-- Live Tickers Moderado -->
         <div class="prof-summary">
-          <span class="prof-summary-lbl">Rendimiento del Perfil</span>
+          <span class="prof-summary-lbl">Rendimiento Neto del Perfil</span>
           <span class="prof-summary-val" id="tot-mod">...</span>
         </div>
         <div class="live-picks">
@@ -632,6 +662,7 @@
         <div class="risk">Riesgo: PBR rompió la M200 a la baja. El flujo de dividendos puede verse afectado por decisiones políticas sobre la caja de la empresa.</div>
       </article>
 
+      <!-- PERFIL AGRESIVO -->
       <article class="prof agr">
         <div class="ph">
           <div class="pico">⚔️</div>
@@ -639,8 +670,9 @@
         </div>
         <div class="obj"><b>Objetivo:</b> ganancia de capital rápida, explotando los rebotes técnicos.</div>
         
+        <!-- Live Tickers Agresivo -->
         <div class="prof-summary">
-          <span class="prof-summary-lbl">Rendimiento del Perfil</span>
+          <span class="prof-summary-lbl">Rendimiento Neto del Perfil</span>
           <span class="prof-summary-val" id="tot-agr">...</span>
         </div>
         <div class="live-picks">
@@ -661,7 +693,8 @@
         <div class="steps">
           <div class="step"><span class="sn">1</span><span><b>NU sobre el cruce alcista.</b> Entrada apoyada en el MACD, buscando la M200 (~US$15.30): margen bruto de suba ~12%.</span></div>
           <div class="step"><span class="sn">2</span><span><b>La ficha en XP.</b> Papel regalado por el pánico electoral: nos apalancamos en el cruce alcista de su MACD y buscamos el viaje directo a la M200 (US$18.29).</span></div>
-          <div class="step"><span class="sn">3</span><span><b>Jugar el rebote del EWZ</b> desde el apoyo en la M200.</span></div>
+          <div class="step"><span class="sn">3</span><span><b>Restá el fee.</b> A esos brutos restale el 20% de honorarios sobre la ganancia y calculá si el riesgo/beneficio te cierra.</span></div>
+          <div class="step"><span class="sn">4</span><span><b>Jugar el rebote del EWZ</b> desde el apoyo en la M200.</span></div>
         </div>
         <div class="risk">Stop loss estricto en NU por debajo de US$12.50 y en XP por debajo de US$15.20. El swing de volatilidad exige disciplina de salida: sin stop, no hay trade.</div>
       </article>
@@ -720,12 +753,12 @@
 </script>
 
 <script>
-// Array general de activos (EMBJ busca EMBJ en Yahoo Finance)
+// Array general de activos (EMBJ busca ERJ en Yahoo Finance)
 const activos = [
   { id: "PBR", query: "PBR", inicial: 15.93, perfil: "mod" },
   { id: "VALE", query: "VALE", inicial: 14.87, perfil: "mod" },
   { id: "ITUB", query: "ITUB", inicial: 8.07, perfil: "mod" },
-  { id: "EMBJ", query: "EMBJ", inicial: 63.02, perfil: "mod" },
+  { id: "EMBJ", query: "ERJ", inicial: 63.02, perfil: "mod" },
   { id: "NU", query: "NU", inicial: 13.27, perfil: "agr" },
   { id: "EWZ", query: "EWZ", inicial: 33.95, perfil: "agr" },
   { id: "XP", query: "XP", inicial: 16.08, perfil: "agr" }
@@ -747,25 +780,27 @@ async function cargarPreciosAPI() {
       const datosYahoo = JSON.parse(datosCrudos.contents);
       const precioActual = datosYahoo.chart.result[0].meta.regularMarketPrice;
       
-      // Cálculo de variación bruta (sin deducciones)
-      const variacion = ((precioActual - activo.inicial) / activo.inicial) * 100;
+      const variacionBruta = ((precioActual - activo.inicial) / activo.inicial) * 100;
       
-      const colorTexto = variacion > 0 ? 'var(--green)' : (variacion < 0 ? 'var(--red)' : 'var(--muted)');
-      const signo = variacion > 0 ? '+' : '';
+      // Aplicar 20% de honorarios solo a la ganancia
+      const gananciaNeta = variacionBruta > 0 ? (variacionBruta * 0.80) : variacionBruta;
+      
+      const colorTexto = gananciaNeta > 0 ? 'var(--green)' : (gananciaNeta < 0 ? 'var(--red)' : 'var(--muted)');
+      const signo = gananciaNeta > 0 ? '+' : '';
 
       // Actualizar el DOM del ticket
       const varEl = document.getElementById(`var-${activo.id}`);
       const actEl = document.getElementById(`act-${activo.id}`);
       
       if(varEl && actEl) {
-        varEl.innerText = `${signo}${variacion.toFixed(2)}%`;
+        varEl.innerText = `${signo}${gananciaNeta.toFixed(2)}%`;
         varEl.style.color = colorTexto;
         actEl.innerHTML = `Act: <b>$${precioActual.toFixed(2)}</b>`;
       }
 
       // Sumar al promedio del perfil correspondiente
-      if(activo.perfil === "mod"){ sumaMod += variacion; countMod++; }
-      if(activo.perfil === "agr"){ sumaAgr += variacion; countAgr++; }
+      if(activo.perfil === "mod"){ sumaMod += gananciaNeta; countMod++; }
+      if(activo.perfil === "agr"){ sumaAgr += gananciaNeta; countAgr++; }
 
     } catch (error) {
       console.error(`Error al cargar ${activo.id}:`, error);
