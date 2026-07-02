@@ -216,15 +216,6 @@
   .assets-divider .lbl{font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);white-space:nowrap;display:flex;align-items:center;gap:8px}
 
   /* ---------- Strategies tab ---------- */
-  .fee-alert{
-    display:flex;gap:14px;align-items:flex-start;
-    border:1px solid var(--gold-line);background:var(--gold-soft);border-radius:var(--radius);
-    padding:18px 20px;margin-bottom:24px;
-  }
-  .fee-alert .fi{width:34px;height:34px;border-radius:9px;background:var(--gold);color:var(--navy);display:grid;place-items:center;font-weight:900;flex:none;font-size:16px}
-  .fee-alert .ft{font-size:13.5px;color:var(--ink)}
-  .fee-alert .ft b{color:var(--gold)}
-
   .profiles{display:grid;grid-template-columns:1fr 1fr;gap:18px}
   .prof{background:linear-gradient(180deg,var(--navy-3),var(--panel));border:1px solid var(--line);border-radius:16px;padding:24px;position:relative}
   .prof.mod{border-top:3px solid var(--blue-2)}
@@ -237,8 +228,21 @@
   .prof .psub{font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted-2)}
   .prof .obj{font-size:13.5px;color:var(--muted);margin:12px 0 16px}
   .prof .obj b{color:var(--ink)}
-  .picks{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
-  .pick{font-size:12px;font-weight:800;padding:6px 12px;border-radius:100px;background:var(--navy-2);border:1px solid var(--line-strong)}
+  
+  /* Live Picks styling */
+  .prof-summary {margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center;}
+  .prof-summary-lbl {font-size: 13px; font-weight: 700; color: var(--muted);}
+  .prof-summary-val {font-size: 18px; font-weight: 900; color: var(--gold);}
+  
+  .live-picks {display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px;}
+  .l-pick {background: var(--navy-2); border: 1px solid var(--line-strong); border-radius: 10px; padding: 12px; display: flex; flex-direction: column; gap: 6px; transition: border-color 0.2s;}
+  .l-pick:hover {border-color: var(--gold-line);}
+  .l-pick .tk-top {display: flex; justify-content: space-between; align-items: center;}
+  .l-pick .tk-name {font-size: 14.5px; font-weight: 900; color: var(--ink); letter-spacing: -0.02em;}
+  .l-pick .tk-var {font-size: 13px; font-weight: 800; color: var(--muted);}
+  .l-pick .tk-bot {display: flex; justify-content: space-between; font-size: 11.5px; color: var(--muted); font-weight: 500;}
+  .l-pick .tk-bot b {color: var(--ink); font-weight: 700;}
+
   .steps{display:flex;flex-direction:column;gap:11px}
   .step{display:flex;gap:12px;font-size:13px;color:var(--muted)}
   .step .sn{width:22px;height:22px;border-radius:7px;background:var(--navy-2);border:1px solid var(--line-strong);display:grid;place-items:center;font-size:11px;font-weight:800;color:var(--gold);flex:none}
@@ -268,7 +272,6 @@
 </head>
 <body>
 
-<!-- Topbar -->
 <div class="topbar">
   <div class="wrap">
     <div class="brand">
@@ -279,7 +282,6 @@
   </div>
 </div>
 
-<!-- Hero -->
 <header class="hero">
   <div class="wrap">
     <div class="flagline"><i></i><i></i><i></i></div>
@@ -290,7 +292,6 @@
   </div>
 </header>
 
-<!-- Tabs -->
 <nav class="tabsbar">
   <div class="wrap">
     <div class="tabs" role="tablist" aria-label="Secciones del informe">
@@ -303,7 +304,6 @@
 
 <main class="wrap">
 
-  <!-- ===== PANEL 1: MACRO ===== -->
   <section class="panel active" id="p1" role="tabpanel" aria-labelledby="t1">
     <div class="section-head">
       <div class="kick">La foto macroeconómica</div>
@@ -368,7 +368,6 @@
     </div>
   </section>
 
-  <!-- ===== PANEL 2: ASSETS ===== -->
   <section class="panel" id="p2" role="tabpanel" aria-labelledby="t2">
     <div class="section-head">
       <div class="kick">Desglose de activos · Julio 2026</div>
@@ -378,7 +377,6 @@
 
     <div class="assets">
 
-      <!-- EWZ -->
       <article class="asset">
         <div class="top">
           <div>
@@ -407,7 +405,6 @@
         </div>
       </article>
 
-      <!-- PBR -->
       <article class="asset">
         <div class="top">
           <div>
@@ -436,7 +433,6 @@
         </div>
       </article>
 
-      <!-- VALE -->
       <article class="asset">
         <div class="top">
           <div>
@@ -465,7 +461,6 @@
         </div>
       </article>
 
-      <!-- NU -->
       <article class="asset">
         <div class="top">
           <div>
@@ -496,18 +491,16 @@
         </div>
       </article>
 
-      <!-- Divisor de sección: nuevas incorporaciones -->
       <div class="assets-divider">
         <span class="ln"></span>
         <span class="lbl">🆕 Nuevas incorporaciones · Industrial, Bancario &amp; Fintech</span>
         <span class="ln"></span>
       </div>
 
-      <!-- EMBRAER -->
       <article class="asset">
         <div class="top">
           <div>
-            <div class="tk">ERJ</div>
+            <div class="tk">EMBJ</div>
             <div class="nm">Embraer S.A. · ADR NYSE / EMBJ3 Bovespa</div>
             <div class="tag">La corporación global inmune al ruido local. Ingresos casi 100% dolarizados, ligados a defensa (C-390 Millennium) y aviación comercial/ejecutiva.</div>
           </div>
@@ -532,7 +525,6 @@
         </div>
       </article>
 
-      <!-- ITUB -->
       <article class="asset">
         <div class="top">
           <div>
@@ -561,7 +553,6 @@
         </div>
       </article>
 
-      <!-- XP -->
       <article class="asset">
         <div class="top">
           <div>
@@ -593,7 +584,6 @@
     </div>
   </section>
 
-  <!-- ===== PANEL 3: STRATEGIES ===== -->
   <section class="panel" id="p3" role="tabpanel" aria-labelledby="t3">
     <div class="section-head">
       <div class="kick">Armado de carteras</div>
@@ -601,44 +591,43 @@
       <p>Las decisiones se estructuran según el perfil de riesgo de cada inversor. Antes de cualquier ejecución, definí el tuyo.</p>
     </div>
 
-    <div class="fee-alert">
-      <div class="fi">%</div>
-      <div class="ft">Para saber si un trade es bueno, mirá la plata real en el bolsillo. A toda proyección de ganancia, restale el <b>20% de honorarios de asesoría</b> para obtener la <b>Ganancia Neta</b>. Cuentas claras conservan carteras.</div>
-    </div>
-
-    <!-- TABLA DE RENDIMIENTO EN VIVO -->
-    <div class="rendimiento-box" style="margin-bottom: 24px; background: var(--navy-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px;">
-      <h3 style="font-size: 16px; font-weight: 800; margin-bottom: 15px; color: var(--gold);">📊 Seguimiento de Portafolio en Vivo</h3>
-      <div style="overflow-x: auto;">
-        <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 13px;">
-          <thead>
-            <tr style="border-bottom: 1px solid var(--line); color: var(--muted-2);">
-              <th style="padding: 10px 8px;">Activo</th>
-              <th style="padding: 10px 8px;">Precio Inicial (1/7/26)</th>
-              <th style="padding: 10px 8px;">Precio Actual</th>
-              <th style="padding: 10px 8px; text-align: right;">Ganancia Neta</th>
-            </tr>
-          </thead>
-          <tbody id="tabla-rendimientos" style="color: var(--ink);">
-            <tr><td colspan="4" style="padding: 15px; text-align: center; color: var(--muted);">Conectando con el mercado...</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
     <div class="profiles">
+      
       <article class="prof mod">
         <div class="ph">
           <div class="pico">🛡️</div>
           <div><div class="pname">Perfil Moderado</div><div class="psub">Renta / DGI</div></div>
         </div>
         <div class="obj"><b>Objetivo:</b> flujo de caja constante y cobrar en dólares, sin importar quién gane la elección.</div>
-        <div class="picks"><span class="pick">PBR</span><span class="pick">VALE</span><span class="pick">ITUB</span><span class="pick">ERJ</span></div>
+        
+        <div class="prof-summary">
+          <span class="prof-summary-lbl">Rendimiento del Perfil</span>
+          <span class="prof-summary-val" id="tot-mod">...</span>
+        </div>
+        <div class="live-picks">
+          <div class="l-pick" id="tk-PBR">
+            <div class="tk-top"><span class="tk-name">PBR</span><span class="tk-var" id="var-PBR">--</span></div>
+            <div class="tk-bot"><span>In: $15.93</span><span id="act-PBR">Act: --</span></div>
+          </div>
+          <div class="l-pick" id="tk-VALE">
+            <div class="tk-top"><span class="tk-name">VALE</span><span class="tk-var" id="var-VALE">--</span></div>
+            <div class="tk-bot"><span>In: $14.87</span><span id="act-VALE">Act: --</span></div>
+          </div>
+          <div class="l-pick" id="tk-ITUB">
+            <div class="tk-top"><span class="tk-name">ITUB</span><span class="tk-var" id="var-ITUB">--</span></div>
+            <div class="tk-bot"><span>In: $8.07</span><span id="act-ITUB">Act: --</span></div>
+          </div>
+          <div class="l-pick" id="tk-EMBJ">
+            <div class="tk-top"><span class="tk-name">EMBJ</span><span class="tk-var" id="var-EMBJ">--</span></div>
+            <div class="tk-bot"><span>In: $63.02</span><span id="act-EMBJ">Act: --</span></div>
+          </div>
+        </div>
+
         <div class="steps">
-          <div class="step"><span class="sn">1</span><span><b>Ponderar PBR y VALE.</b> A estos precios (PBR sub-16, VALE sub-15) se apunta a un Yield on Cost alto en términos históricos.</span></div>
-          <div class="step"><span class="sn">2</span><span><b>Sumar ITUB como pilar bancario.</b> Rebote técnico confirmado en la M200 (US$7.86) y flujo constante vía dividendos mensuales + JCP complementario.</span></div>
-          <div class="step"><span class="sn">3</span><span><b>Dejar una porción estructural en Embraer (ERJ).</b> Ingresos dolarizados y contratos de defensa/aviación descorrelacionan la cartera del riesgo político puro de Brasilia.</span></div>
-          <div class="step"><span class="sn">4</span><span><b>Compras escalonadas y liquidez.</b> No entra todo el capital hoy: se arranca con un 30% y se guarda munición por si la volatilidad pre-electoral da precios aún más bajos en septiembre.</span></div>
+          <div class="step"><span class="sn">1</span><span><b>Ponderar PBR y VALE.</b> A estos precios se apunta a un Yield on Cost alto en términos históricos.</span></div>
+          <div class="step"><span class="sn">2</span><span><b>Sumar ITUB como pilar bancario.</b> Rebote técnico confirmado y flujo constante vía dividendos mensuales.</span></div>
+          <div class="step"><span class="sn">3</span><span><b>Dejar una porción estructural en Embraer (EMBJ).</b> Ingresos dolarizados y contratos de defensa/aviación descorrelacionan la cartera del riesgo político puro.</span></div>
+          <div class="step"><span class="sn">4</span><span><b>Compras escalonadas y liquidez.</b> No entra todo el capital hoy: se arranca con un 30% y se guarda munición.</span></div>
         </div>
         <div class="risk">Riesgo: PBR rompió la M200 a la baja. El flujo de dividendos puede verse afectado por decisiones políticas sobre la caja de la empresa.</div>
       </article>
@@ -649,15 +638,34 @@
           <div><div class="pname">Perfil Agresivo</div><div class="psub">Swing trade de volatilidad</div></div>
         </div>
         <div class="obj"><b>Objetivo:</b> ganancia de capital rápida, explotando los rebotes técnicos.</div>
-        <div class="picks"><span class="pick">NU</span><span class="pick">EWZ</span><span class="pick">XP</span></div>
+        
+        <div class="prof-summary">
+          <span class="prof-summary-lbl">Rendimiento del Perfil</span>
+          <span class="prof-summary-val" id="tot-agr">...</span>
+        </div>
+        <div class="live-picks">
+          <div class="l-pick" id="tk-NU">
+            <div class="tk-top"><span class="tk-name">NU</span><span class="tk-var" id="var-NU">--</span></div>
+            <div class="tk-bot"><span>In: $13.27</span><span id="act-NU">Act: --</span></div>
+          </div>
+          <div class="l-pick" id="tk-EWZ">
+            <div class="tk-top"><span class="tk-name">EWZ</span><span class="tk-var" id="var-EWZ">--</span></div>
+            <div class="tk-bot"><span>In: $33.95</span><span id="act-EWZ">Act: --</span></div>
+          </div>
+          <div class="l-pick" id="tk-XP">
+            <div class="tk-top"><span class="tk-name">XP</span><span class="tk-var" id="var-XP">--</span></div>
+            <div class="tk-bot"><span>In: $16.08</span><span id="act-XP">Act: --</span></div>
+          </div>
+        </div>
+
         <div class="steps">
           <div class="step"><span class="sn">1</span><span><b>NU sobre el cruce alcista.</b> Entrada apoyada en el MACD, buscando la M200 (~US$15.30): margen bruto de suba ~12%.</span></div>
-          <div class="step"><span class="sn">2</span><span><b>La ficha en XP.</b> Papel regalado por el pánico electoral: nos apalancamos en el cruce alcista de su MACD y buscamos el viaje directo a la M200 (US$18.29), potencial bruto ~13%.</span></div>
-          <div class="step"><span class="sn">3</span><span><b>Restá el fee.</b> A esos brutos restale el 20% de honorarios sobre la ganancia y calculá si el riesgo/beneficio te cierra.</span></div>
-          <div class="step"><span class="sn">4</span><span><b>Jugar el rebote del EWZ</b> desde el apoyo en la M200.</span></div>
+          <div class="step"><span class="sn">2</span><span><b>La ficha en XP.</b> Papel regalado por el pánico electoral: nos apalancamos en el cruce alcista de su MACD y buscamos el viaje directo a la M200 (US$18.29).</span></div>
+          <div class="step"><span class="sn">3</span><span><b>Jugar el rebote del EWZ</b> desde el apoyo en la M200.</span></div>
         </div>
         <div class="risk">Stop loss estricto en NU por debajo de US$12.50 y en XP por debajo de US$15.20. El swing de volatilidad exige disciplina de salida: sin stop, no hay trade.</div>
       </article>
+
     </div>
   </section>
 
@@ -707,81 +715,84 @@
     });
   });
 
-  // initial bars for the first visible panel
   animateBars(panels[0]);
 })();
 </script>
 
 <script>
-// Valores iniciales seteados al 1/7/2026
-const portafolio = [
-  { ticker: "PBR", query: "PBR", inicial: 15.93 },
-  { ticker: "VALE", query: "VALE", inicial: 14.87 },
-  { ticker: "ITUB", query: "ITUB", inicial: 8.07 },
-  { ticker: "EMBJ", query: "ERJ", inicial: 63.02 }, // Muestra EMBJ, busca ERJ
-  { ticker: "NU", query: "NU", inicial: 13.27 },
-  { ticker: "EWZ", query: "EWZ", inicial: 33.95 },
-  { ticker: "XP", query: "XP", inicial: 16.08 }
+// Array general de activos (EMBJ busca EMBJ en Yahoo Finance)
+const activos = [
+  { id: "PBR", query: "PBR", inicial: 15.93, perfil: "mod" },
+  { id: "VALE", query: "VALE", inicial: 14.87, perfil: "mod" },
+  { id: "ITUB", query: "ITUB", inicial: 8.07, perfil: "mod" },
+  { id: "EMBJ", query: "EMBJ", inicial: 63.02, perfil: "mod" },
+  { id: "NU", query: "NU", inicial: 13.27, perfil: "agr" },
+  { id: "EWZ", query: "EWZ", inicial: 33.95, perfil: "agr" },
+  { id: "XP", query: "XP", inicial: 16.08, perfil: "agr" }
 ];
 
 async function cargarPreciosAPI() {
-  const tbody = document.getElementById('tabla-rendimientos');
-  let htmlFilas = '';
+  let sumaMod = 0, countMod = 0;
+  let sumaAgr = 0, countAgr = 0;
 
-  for (let activo of portafolio) {
+  for (let activo of activos) {
     try {
-      // Usamos la API de Yahoo Finance a través de un proxy libre
       const urlYahoo = `https://query1.finance.yahoo.com/v8/finance/chart/${activo.query}?interval=1d`;
       const urlProxy = `https://api.allorigins.win/get?url=${encodeURIComponent(urlYahoo)}`;
       
       const respuesta = await fetch(urlProxy);
-      if (!respuesta.ok) throw new Error('Fallo en la red');
+      if (!respuesta.ok) throw new Error('Error de red');
       
       const datosCrudos = await respuesta.json();
       const datosYahoo = JSON.parse(datosCrudos.contents);
-      
-      // Extraemos el precio de mercado actual
       const precioActual = datosYahoo.chart.result[0].meta.regularMarketPrice;
       
-      // Cálculo de variación bruta
-      const variacionBruta = ((precioActual - activo.inicial) / activo.inicial) * 100;
+      // Cálculo de variación bruta (sin deducciones)
+      const variacion = ((precioActual - activo.inicial) / activo.inicial) * 100;
       
-      // Cálculo de Ganancia Neta restando 20% de honorarios sobre la rentabilidad positiva
-      const gananciaNeta = variacionBruta > 0 ? (variacionBruta * 0.80) : variacionBruta;
-      
-      // Estilos visuales
-      const colorTexto = gananciaNeta > 0 ? 'var(--green)' : (gananciaNeta < 0 ? 'var(--red)' : 'var(--ink)');
-      const signo = gananciaNeta > 0 ? '+' : '';
+      const colorTexto = variacion > 0 ? 'var(--green)' : (variacion < 0 ? 'var(--red)' : 'var(--muted)');
+      const signo = variacion > 0 ? '+' : '';
 
-      htmlFilas += `
-        <tr style="border-bottom: 1px solid rgba(255,255,255,0.04);">
-          <td style="padding: 12px 8px; font-weight: 700;">${activo.ticker}</td>
-          <td style="padding: 12px 8px; color: var(--muted);">US$${activo.inicial.toFixed(2)}</td>
-          <td style="padding: 12px 8px; font-weight: 600;">US$${precioActual.toFixed(2)}</td>
-          <td style="padding: 12px 8px; text-align: right; font-weight: 800; color: ${colorTexto};">
-            ${signo}${gananciaNeta.toFixed(2)}%
-          </td>
-        </tr>
-      `;
+      // Actualizar el DOM del ticket
+      const varEl = document.getElementById(`var-${activo.id}`);
+      const actEl = document.getElementById(`act-${activo.id}`);
+      
+      if(varEl && actEl) {
+        varEl.innerText = `${signo}${variacion.toFixed(2)}%`;
+        varEl.style.color = colorTexto;
+        actEl.innerHTML = `Act: <b>$${precioActual.toFixed(2)}</b>`;
+      }
+
+      // Sumar al promedio del perfil correspondiente
+      if(activo.perfil === "mod"){ sumaMod += variacion; countMod++; }
+      if(activo.perfil === "agr"){ sumaAgr += variacion; countAgr++; }
+
     } catch (error) {
-      console.error(`No se pudo cargar la cotización de ${activo.ticker}`, error);
-      // Fila de fallback si falla la conexión de un ticker en particular
-      htmlFilas += `
-        <tr style="border-bottom: 1px solid rgba(255,255,255,0.04);">
-          <td style="padding: 12px 8px; font-weight: 700;">${activo.ticker}</td>
-          <td style="padding: 12px 8px; color: var(--muted);">US$${activo.inicial.toFixed(2)}</td>
-          <td style="padding: 12px 8px; color: var(--muted);">--</td>
-          <td style="padding: 12px 8px; text-align: right; color: var(--muted);">Error de red</td>
-        </tr>
-      `;
+      console.error(`Error al cargar ${activo.id}:`, error);
+      const varEl = document.getElementById(`var-${activo.id}`);
+      if(varEl){
+        varEl.innerText = `Error`;
+        varEl.style.color = 'var(--red)';
+      }
     }
   }
+
+  // Renderizar los promedios totales por perfil
+  if(countMod > 0){
+    const avgMod = sumaMod / countMod;
+    const totModEl = document.getElementById('tot-mod');
+    totModEl.innerText = (avgMod > 0 ? '+' : '') + avgMod.toFixed(2) + '%';
+    totModEl.style.color = avgMod > 0 ? 'var(--green)' : (avgMod < 0 ? 'var(--red)' : 'var(--muted)');
+  }
   
-  // Reemplazamos el mensaje de carga por los datos finales
-  tbody.innerHTML = htmlFilas;
+  if(countAgr > 0){
+    const avgAgr = sumaAgr / countAgr;
+    const totAgrEl = document.getElementById('tot-agr');
+    totAgrEl.innerText = (avgAgr > 0 ? '+' : '') + avgAgr.toFixed(2) + '%';
+    totAgrEl.style.color = avgAgr > 0 ? 'var(--green)' : (avgAgr < 0 ? 'var(--red)' : 'var(--muted)');
+  }
 }
 
-// Disparar la función ni bien carga la página
 document.addEventListener('DOMContentLoaded', cargarPreciosAPI);
 </script>
 </body>
