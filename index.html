@@ -120,6 +120,15 @@
   .section-head h2{font-size:clamp(24px,3.6vw,34px);font-weight:800;letter-spacing:-.01em}
   .section-head p{color:var(--muted);margin-top:9px;max-width:680px;font-weight:500;font-size:15px}
 
+  /* ---------- Botón Refresh ---------- */
+  .btn-refresh {
+    background: var(--navy-2); color: var(--gold); border: 1px solid var(--gold-line);
+    padding: 10px 18px; border-radius: 8px; font-family: var(--font); font-size: 13px; font-weight: 700;
+    cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px; margin-top: 10px;
+  }
+  .btn-refresh:hover { background: var(--gold-soft); }
+  .btn-refresh:active { transform: scale(0.96); }
+
   /* ---------- Macro tab ---------- */
   .macro-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:18px}
   .card{
@@ -215,48 +224,51 @@
   .assets-divider .ln{flex:1;height:1px;background:var(--line)}
   .assets-divider .lbl{font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);white-space:nowrap;display:flex;align-items:center;gap:8px}
 
-  /* ---------- Strategies tab ---------- */
-  .fee-alert{
-    display:flex;gap:14px;align-items:flex-start;
-    border:1px solid var(--gold-line);background:var(--gold-soft);border-radius:var(--radius);
-    padding:18px 20px;margin-bottom:24px;
+  /* ---------- Strategies / Portafolios ---------- */
+  .cartera-box {
+    background: linear-gradient(180deg, var(--navy-3), var(--panel));
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    margin-bottom: 30px;
+    overflow: hidden;
   }
-  .fee-alert .fi{width:34px;height:34px;border-radius:9px;background:var(--gold);color:var(--navy);display:grid;place-items:center;font-weight:900;flex:none;font-size:16px}
-  .fee-alert .ft{font-size:13.5px;color:var(--ink)}
-  .fee-alert .ft b{color:var(--gold)}
-
-  .profiles{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-  .prof{background:linear-gradient(180deg,var(--navy-3),var(--panel));border:1px solid var(--line);border-radius:16px;padding:24px;position:relative}
-  .prof.mod{border-top:3px solid var(--blue-2)}
-  .prof.agr{border-top:3px solid var(--gold)}
-  .prof .ph{display:flex;align-items:center;gap:12px;margin-bottom:6px}
-  .prof .pico{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;font-size:19px;flex:none}
-  .prof.mod .pico{background:rgba(52,85,198,.2);color:var(--blue-2)}
-  .prof.agr .pico{background:var(--gold-soft);color:var(--gold)}
-  .prof .pname{font-size:18px;font-weight:900}
-  .prof .psub{font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted-2)}
-  .prof .obj{font-size:13.5px;color:var(--muted);margin:12px 0 16px}
-  .prof .obj b{color:var(--ink)}
+  .c-head {
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;
+    padding: 22px 26px; border-bottom: 1px solid var(--line); background: rgba(0,0,0,0.15);
+  }
+  .c-head.mod { border-top: 3px solid var(--blue-2); }
+  .c-head.agr { border-top: 3px solid var(--gold); }
   
-  /* Live Picks styling */
-  .prof-summary {margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center;}
-  .prof-summary-lbl {font-size: 13px; font-weight: 700; color: var(--muted);}
-  .prof-summary-val {font-size: 18px; font-weight: 900; color: var(--gold);}
+  .c-title { display: flex; align-items: center; gap: 14px; }
+  .c-title .pico { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; font-size: 22px; flex: none; background: rgba(255,255,255,0.05); }
+  .c-head.mod .pico { background: rgba(52,85,198,.2); color: var(--blue-2); }
+  .c-head.agr .pico { background: var(--gold-soft); color: var(--gold); }
   
-  .live-picks {display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px;}
-  .l-pick {background: var(--navy-2); border: 1px solid var(--line-strong); border-radius: 10px; padding: 12px; display: flex; flex-direction: column; gap: 6px; transition: border-color 0.2s;}
-  .l-pick:hover {border-color: var(--gold-line);}
-  .l-pick .tk-top {display: flex; justify-content: space-between; align-items: center;}
-  .l-pick .tk-name {font-size: 14.5px; font-weight: 900; color: var(--ink); letter-spacing: -0.02em;}
-  .l-pick .tk-var {font-size: 13px; font-weight: 800; color: var(--muted);}
-  .l-pick .tk-bot {display: flex; justify-content: space-between; font-size: 11.5px; color: var(--muted); font-weight: 500;}
-  .l-pick .tk-bot b {color: var(--ink); font-weight: 700;}
+  .c-title h3 { font-size: 20px; font-weight: 900; margin-bottom: 2px; }
+  .c-title span { font-size: 11.5px; font-weight: 700; color: var(--muted-2); letter-spacing: 0.05em; text-transform: uppercase; }
+  
+  .c-tot { text-align: right; }
+  .c-tot .lbl { display: block; font-size: 11px; font-weight: 700; color: var(--muted-2); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+  .c-tot .val { font-size: 22px; font-weight: 900; color: var(--ink); display: inline-block; margin-right: 8px; }
+  .c-tot .pct { font-size: 14px; font-weight: 800; color: var(--muted); background: rgba(255,255,255,0.05); padding: 5px 9px; border-radius: 6px; }
+  
+  .c-body { padding: 26px; }
+  .c-body .obj { font-size: 14px; color: var(--muted); margin-bottom: 20px; line-height: 1.6; }
+  .c-body .obj b { color: var(--ink); }
+  
+  .c-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 13.5px; white-space: nowrap; margin-bottom: 24px; }
+  .c-table th { padding: 12px 14px; color: var(--muted-2); font-weight: 700; border-bottom: 1px solid var(--line); font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .c-table td { padding: 14px; border-bottom: 1px solid rgba(255,255,255,0.03); color: var(--muted); }
+  .c-table tr:last-child td { border-bottom: none; }
+  .c-table .tk-col { font-weight: 800; color: var(--ink); font-size: 15px; }
+  .c-table .tk-sub { display: block; font-size: 11.5px; color: var(--muted-2); font-weight: 600; margin-top: 2px; }
+  .c-table b { color: var(--ink); }
 
   .steps{display:flex;flex-direction:column;gap:11px}
   .step{display:flex;gap:12px;font-size:13px;color:var(--muted)}
-  .step .sn{width:22px;height:22px;border-radius:7px;background:var(--navy-2);border:1px solid var(--line-strong);display:grid;place-items:center;font-size:11px;font-weight:800;color:var(--gold);flex:none}
+  .step .sn{width:22px;height:22px;border-radius:7px;background: var(--panel);border:1px solid var(--line-strong);display:grid;place-items:center;font-size:11px;font-weight:800;color:var(--gold);flex:none}
   .step b{color:var(--ink);font-weight:700}
-  .risk{margin-top:16px;font-size:12px;color:var(--red);background:rgba(224,91,91,.08);border:1px solid rgba(224,91,91,.25);border-radius:10px;padding:11px 13px;font-weight:600}
+  .risk{margin-top:20px;font-size:12px;color:var(--red);background:rgba(224,91,91,.08);border:1px solid rgba(224,91,91,.25);border-radius:10px;padding:12px 15px;font-weight:600}
 
   /* ---------- Footer ---------- */
   footer{margin-top:56px;border-top:1px solid var(--line);padding:30px 0 46px}
@@ -268,10 +280,12 @@
   .fbrand .fr{font-size:11px;color:var(--muted-2);letter-spacing:.04em}
 
   @media(max-width:820px){
-    .macro-grid,.assets,.profiles{grid-template-columns:1fr}
+    .macro-grid,.assets{grid-template-columns:1fr}
     .press{grid-template-columns:1fr}
     .poll .row{grid-template-columns:120px 1fr 40px}
     .hero{padding:38px 0 20px}
+    .c-head { flex-direction: column; align-items: flex-start; }
+    .c-tot { text-align: left; margin-top: 10px; }
   }
   @media(prefers-reduced-motion:reduce){
     *{animation:none!important;transition:none!important}
@@ -606,100 +620,115 @@
     </div>
   </section>
 
-  <!-- ===== PANEL 3: STRATEGIES ===== -->
+  <!-- ===== PANEL 3: STRATEGIES / CARTERAS ===== -->
   <section class="panel" id="p3" role="tabpanel" aria-labelledby="t3">
     <div class="section-head">
       <div class="kick">Armado de carteras</div>
-      <h2>Estrategias según tu perfil</h2>
-      <p>Las decisiones se estructuran según el perfil de riesgo de cada inversor. Antes de cualquier ejecución, definí el tuyo.</p>
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 14px;">
+        <div>
+          <h2>Estrategias según tu perfil</h2>
+          <p style="margin-top: 4px;">Las decisiones se estructuran según el perfil de riesgo. Armamos dos portafolios modelo partiendo de un capital base de US$ 2.000 para que veas la evolución real en vivo.</p>
+        </div>
+        <button class="btn-refresh" onclick="cargarPreciosAPI()" id="btn-update">
+          <span style="font-size: 15px;">🔄</span> Actualizar Mercado
+        </button>
+      </div>
     </div>
 
-    <div class="fee-alert">
-      <div class="fi">%</div>
-      <div class="ft">Para saber si un trade es bueno, mirá la plata real en el bolsillo. A toda proyección de ganancia en vivo se le resta automáticamente el <b>20% de honorarios de asesoría</b> para obtener la <b>Ganancia Neta real</b>. Cuentas claras conservan carteras.</div>
-    </div>
-
-    <div class="profiles">
-      
-      <!-- PERFIL MODERADO -->
-      <article class="prof mod">
-        <div class="ph">
+    <!-- CARTERA MODERADA -->
+    <article class="cartera-box">
+      <div class="c-head mod">
+        <div class="c-title">
           <div class="pico">🛡️</div>
-          <div><div class="pname">Perfil Moderado</div><div class="psub">Renta / DGI</div></div>
+          <div>
+            <h3>Cartera Moderada</h3>
+            <span>Renta / DGI · Inversión Inicial: US$2.000</span>
+          </div>
         </div>
-        <div class="obj"><b>Objetivo:</b> flujo de caja constante y cobrar en dólares, sin importar quién gane la elección.</div>
+        <div class="c-tot">
+          <span class="lbl">Valorización Actual</span>
+          <span class="val" id="tot-val-mod">US$--</span>
+          <span class="pct" id="tot-pct-mod">--%</span>
+        </div>
+      </div>
+      
+      <div class="c-body">
+        <p class="obj"><b>Objetivo:</b> flujo de caja constante y cobrar en dólares. El capital se divide en 4 partes iguales (25% por activo) buscando exposición estructural de largo plazo.</p>
         
-        <!-- Live Tickers Moderado -->
-        <div class="prof-summary">
-          <span class="prof-summary-lbl">Rendimiento Neto del Perfil</span>
-          <span class="prof-summary-val" id="tot-mod">...</span>
-        </div>
-        <div class="live-picks">
-          <div class="l-pick" id="tk-PBR">
-            <div class="tk-top"><span class="tk-name">PBR</span><span class="tk-var" id="var-PBR">--</span></div>
-            <div class="tk-bot"><span>In: $15.93</span><span id="act-PBR">Act: --</span></div>
-          </div>
-          <div class="l-pick" id="tk-VALE">
-            <div class="tk-top"><span class="tk-name">VALE</span><span class="tk-var" id="var-VALE">--</span></div>
-            <div class="tk-bot"><span>In: $14.87</span><span id="act-VALE">Act: --</span></div>
-          </div>
-          <div class="l-pick" id="tk-ITUB">
-            <div class="tk-top"><span class="tk-name">ITUB</span><span class="tk-var" id="var-ITUB">--</span></div>
-            <div class="tk-bot"><span>In: $8.07</span><span id="act-ITUB">Act: --</span></div>
-          </div>
-          <div class="l-pick" id="tk-EMBJ">
-            <div class="tk-top"><span class="tk-name">EMBJ</span><span class="tk-var" id="var-EMBJ">--</span></div>
-            <div class="tk-bot"><span>In: $63.02</span><span id="act-EMBJ">Act: --</span></div>
-          </div>
+        <div style="overflow-x: auto; margin-bottom: 24px;">
+          <table class="c-table">
+            <thead>
+              <tr>
+                <th>Activo</th>
+                <th>Inversión Base</th>
+                <th>Precio Inicial</th>
+                <th>Precio Actual</th>
+                <th style="text-align: right;">Rendimiento P/L</th>
+              </tr>
+            </thead>
+            <tbody id="tb-mod">
+              <tr><td colspan="5" style="text-align:center;">Conectando con el mercado...</td></tr>
+            </tbody>
+          </table>
         </div>
 
         <div class="steps">
-          <div class="step"><span class="sn">1</span><span><b>Ponderar PBR y VALE.</b> A estos precios se apunta a un Yield on Cost alto en términos históricos.</span></div>
+          <div class="step"><span class="sn">1</span><span><b>Ponderar PBR y VALE.</b> A estos precios de entrada se apunta a un Yield on Cost alto en términos históricos.</span></div>
           <div class="step"><span class="sn">2</span><span><b>Sumar ITUB como pilar bancario.</b> Rebote técnico confirmado y flujo constante vía dividendos mensuales.</span></div>
-          <div class="step"><span class="sn">3</span><span><b>Dejar una porción estructural en Embraer (EMBJ).</b> Ingresos dolarizados y contratos de defensa/aviación descorrelacionan la cartera del riesgo político puro.</span></div>
-          <div class="step"><span class="sn">4</span><span><b>Compras escalonadas y liquidez.</b> No entra todo el capital hoy: se arranca con un 30% y se guarda munición.</span></div>
+          <div class="step"><span class="sn">3</span><span><b>Dejar una porción estructural en Embraer (EMBJ).</b> Ingresos dolarizados y contratos de aviación descorrelacionan la cartera del riesgo político puro de Brasilia.</span></div>
+          <div class="step"><span class="sn">4</span><span><b>Liquidez.</b> No entra todo el capital hoy: podés arrancar con un 30% y guardar munición para la volatilidad de septiembre.</span></div>
         </div>
         <div class="risk">Riesgo: PBR rompió la M200 a la baja. El flujo de dividendos puede verse afectado por decisiones políticas sobre la caja de la empresa.</div>
-      </article>
+      </div>
+    </article>
 
-      <!-- PERFIL AGRESIVO -->
-      <article class="prof agr">
-        <div class="ph">
+    <!-- CARTERA AGRESIVA -->
+    <article class="cartera-box">
+      <div class="c-head agr">
+        <div class="c-title">
           <div class="pico">⚔️</div>
-          <div><div class="pname">Perfil Agresivo</div><div class="psub">Swing trade de volatilidad</div></div>
+          <div>
+            <h3>Cartera Agresiva</h3>
+            <span>Swing trade volatilidad · Inversión Inicial: US$2.000</span>
+          </div>
         </div>
-        <div class="obj"><b>Objetivo:</b> ganancia de capital rápida, explotando los rebotes técnicos.</div>
+        <div class="c-tot">
+          <span class="lbl">Valorización Actual</span>
+          <span class="val" id="tot-val-agr">US$--</span>
+          <span class="pct" id="tot-pct-agr">--%</span>
+        </div>
+      </div>
+      
+      <div class="c-body">
+        <p class="obj"><b>Objetivo:</b> ganancia de capital rápida, explotando rebotes técnicos. El capital se divide en 3 partes iguales (33,3% por activo).</p>
         
-        <!-- Live Tickers Agresivo -->
-        <div class="prof-summary">
-          <span class="prof-summary-lbl">Rendimiento Neto del Perfil</span>
-          <span class="prof-summary-val" id="tot-agr">...</span>
-        </div>
-        <div class="live-picks">
-          <div class="l-pick" id="tk-NU">
-            <div class="tk-top"><span class="tk-name">NU</span><span class="tk-var" id="var-NU">--</span></div>
-            <div class="tk-bot"><span>In: $13.27</span><span id="act-NU">Act: --</span></div>
-          </div>
-          <div class="l-pick" id="tk-EWZ">
-            <div class="tk-top"><span class="tk-name">EWZ</span><span class="tk-var" id="var-EWZ">--</span></div>
-            <div class="tk-bot"><span>In: $33.95</span><span id="act-EWZ">Act: --</span></div>
-          </div>
-          <div class="l-pick" id="tk-XP">
-            <div class="tk-top"><span class="tk-name">XP</span><span class="tk-var" id="var-XP">--</span></div>
-            <div class="tk-bot"><span>In: $16.08</span><span id="act-XP">Act: --</span></div>
-          </div>
+        <div style="overflow-x: auto; margin-bottom: 24px;">
+          <table class="c-table">
+            <thead>
+              <tr>
+                <th>Activo</th>
+                <th>Inversión Base</th>
+                <th>Precio Inicial</th>
+                <th>Precio Actual</th>
+                <th style="text-align: right;">Rendimiento P/L</th>
+              </tr>
+            </thead>
+            <tbody id="tb-agr">
+              <tr><td colspan="5" style="text-align:center;">Conectando con el mercado...</td></tr>
+            </tbody>
+          </table>
         </div>
 
         <div class="steps">
-          <div class="step"><span class="sn">1</span><span><b>NU sobre el cruce alcista.</b> Entrada apoyada en el MACD, buscando la M200 (~US$15.30): margen bruto de suba ~12%.</span></div>
-          <div class="step"><span class="sn">2</span><span><b>La ficha en XP.</b> Papel regalado por el pánico electoral: nos apalancamos en el cruce alcista de su MACD y buscamos el viaje directo a la M200 (US$18.29).</span></div>
-          <div class="step"><span class="sn">3</span><span><b>Restá el fee.</b> A esos brutos restale el 20% de honorarios sobre la ganancia y calculá si el riesgo/beneficio te cierra.</span></div>
-          <div class="step"><span class="sn">4</span><span><b>Jugar el rebote del EWZ</b> desde el apoyo en la M200.</span></div>
+          <div class="step"><span class="sn">1</span><span><b>NU sobre el cruce alcista.</b> Entrada apoyada en el MACD, buscando la M200 (~US$15.30): margen de suba ~12%.</span></div>
+          <div class="step"><span class="sn">2</span><span><b>La ficha en XP.</b> Papel regalado por el pánico electoral: nos apalancamos en el cruce alcista de su MACD y buscamos el viaje a la M200 (US$18.29).</span></div>
+          <div class="step"><span class="sn">3</span><span><b>Jugar el rebote del EWZ</b> desde el apoyo milimétrico en la M200.</span></div>
+          <div class="step"><span class="sn">4</span><span><b>Gestión de riesgo.</b> Calculá siempre tu ratio riesgo/beneficio antes de gatillar las compras.</span></div>
         </div>
-        <div class="risk">Stop loss estricto en NU por debajo de US$12.50 y en XP por debajo de US$15.20. El swing de volatilidad exige disciplina de salida: sin stop, no hay trade.</div>
-      </article>
+        <div class="risk">Stop loss estricto en NU por debajo de US$12.50 y en XP por debajo de US$15.20. El swing de volatilidad exige disciplina de salida.</div>
+      </div>
+    </article>
 
-    </div>
   </section>
 
 </main>
@@ -753,81 +782,141 @@
 </script>
 
 <script>
-// Array general de activos (EMBJ busca ERJ en Yahoo Finance)
-const activos = [
-  { id: "PBR", query: "PBR", inicial: 15.93, perfil: "mod" },
-  { id: "VALE", query: "VALE", inicial: 14.87, perfil: "mod" },
-  { id: "ITUB", query: "ITUB", inicial: 8.07, perfil: "mod" },
-  { id: "EMBJ", query: "ERJ", inicial: 63.02, perfil: "mod" },
-  { id: "NU", query: "NU", inicial: 13.27, perfil: "agr" },
-  { id: "EWZ", query: "EWZ", inicial: 33.95, perfil: "agr" },
-  { id: "XP", query: "XP", inicial: 16.08, perfil: "agr" }
-];
+// Configuración de carteras modelo
+const portafolios = {
+  mod: {
+    id: "mod",
+    capital: 2000,
+    activos: [
+      { ticker: "PBR", query: "PBR", inicial: 15.93 },
+      { ticker: "VALE", query: "VALE", inicial: 14.87 },
+      { ticker: "ITUB", query: "ITUB", inicial: 8.07 },
+      { ticker: "EMBJ", query: "ERJ", inicial: 63.02 } // Muestra EMBJ, consulta ERJ a Yahoo
+    ]
+  },
+  agr: {
+    id: "agr",
+    capital: 2000,
+    activos: [
+      { ticker: "NU", query: "NU", inicial: 13.27 },
+      { ticker: "EWZ", query: "EWZ", inicial: 33.95 },
+      { ticker: "XP", query: "XP", inicial: 16.08 }
+    ]
+  }
+};
+
+// Asignación de capital equitativo
+portafolios.mod.activos.forEach(a => { a.capAsignado = 2000 / 4; a.pctAsignado = 25; });
+portafolios.agr.activos.forEach(a => { a.capAsignado = 2000 / 3; a.pctAsignado = 33.33; });
+
+// Función core para buscar el precio en Yahoo usando sistema anti-caídas (múltiples proxies)
+async function fetchYahooPrice(ticker) {
+  const urlYahoo = `https://query1.finance.yahoo.com/v8/finance/chart/${ticker}?interval=1d`;
+  
+  // Lista de proxies de respaldo. Si uno tira CORS o error, salta al siguiente.
+  const proxies = [
+    `https://api.allorigins.win/raw?url=${encodeURIComponent(urlYahoo)}`,
+    `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(urlYahoo)}`,
+    `https://corsproxy.io/?${encodeURIComponent(urlYahoo)}`
+  ];
+
+  for (let proxy of proxies) {
+    try {
+      const res = await fetch(proxy, { cache: "no-store" });
+      if (!res.ok) continue; 
+      const data = await res.json();
+      if (data && data.chart && data.chart.result) {
+        return data.chart.result[0].meta.regularMarketPrice;
+      }
+    } catch (e) {
+      console.warn(`Proxy falló para ${ticker}:`, proxy);
+    }
+  }
+  throw new Error(`No se pudo obtener el precio de ${ticker}`);
+}
 
 async function cargarPreciosAPI() {
-  let sumaMod = 0, countMod = 0;
-  let sumaAgr = 0, countAgr = 0;
+  const btn = document.getElementById('btn-update');
+  if(btn) btn.style.opacity = '0.5';
 
-  for (let activo of activos) {
-    try {
-      const urlYahoo = `https://query1.finance.yahoo.com/v8/finance/chart/${activo.query}?interval=1d`;
-      const urlProxy = `https://api.allorigins.win/get?url=${encodeURIComponent(urlYahoo)}`;
-      
-      const respuesta = await fetch(urlProxy);
-      if (!respuesta.ok) throw new Error('Error de red');
-      
-      const datosCrudos = await respuesta.json();
-      const datosYahoo = JSON.parse(datosCrudos.contents);
-      const precioActual = datosYahoo.chart.result[0].meta.regularMarketPrice;
-      
-      const variacionBruta = ((precioActual - activo.inicial) / activo.inicial) * 100;
-      
-      // Aplicar 20% de honorarios solo a la ganancia
-      const gananciaNeta = variacionBruta > 0 ? (variacionBruta * 0.80) : variacionBruta;
-      
-      const colorTexto = gananciaNeta > 0 ? 'var(--green)' : (gananciaNeta < 0 ? 'var(--red)' : 'var(--muted)');
-      const signo = gananciaNeta > 0 ? '+' : '';
+  // Procesamos cada cartera (Moderada y Agresiva)
+  for (let key in portafolios) {
+    let p = portafolios[key];
+    let tbody = document.getElementById(`tb-${p.id}`);
+    
+    // Estado de carga inicial
+    tbody.innerHTML = `<tr><td colspan="5" style="text-align:center;">Calculando portafolio... ⏳</td></tr>`;
+    
+    let htmlFilas = '';
+    let valorTotalActual = 0;
+    let cargaExitosa = true;
 
-      // Actualizar el DOM del ticket
-      const varEl = document.getElementById(`var-${activo.id}`);
-      const actEl = document.getElementById(`act-${activo.id}`);
-      
-      if(varEl && actEl) {
-        varEl.innerText = `${signo}${gananciaNeta.toFixed(2)}%`;
-        varEl.style.color = colorTexto;
-        actEl.innerHTML = `Act: <b>$${precioActual.toFixed(2)}</b>`;
+    // Procesamos cada activo de la cartera
+    for (let activo of p.activos) {
+      try {
+        const precioActual = await fetchYahooPrice(activo.query);
+        
+        // Matemáticas de inversión
+        const accionesCompradas = activo.capAsignado / activo.inicial;
+        const valorActualizado = accionesCompradas * precioActual;
+        const varPct = ((precioActual / activo.inicial) - 1) * 100;
+        
+        valorTotalActual += valorActualizado;
+
+        // Estilos
+        const color = varPct > 0 ? 'var(--green)' : (varPct < 0 ? 'var(--red)' : 'var(--muted)');
+        const signo = varPct > 0 ? '+' : '';
+
+        htmlFilas += `
+          <tr>
+            <td class="tk-col">${activo.ticker}</td>
+            <td>US$${activo.capAsignado.toFixed(2)} <span class="tk-sub">${activo.pctAsignado.toFixed(2)}% del portfolio</span></td>
+            <td>US$${activo.inicial.toFixed(2)}</td>
+            <td><b>US$${precioActual.toFixed(2)}</b></td>
+            <td style="text-align:right; color:${color}; font-weight:800;">
+              ${signo}${varPct.toFixed(2)}%<br>
+              <span style="font-size:11px;font-weight:600;">US$${valorActualizado.toFixed(2)}</span>
+            </td>
+          </tr>
+        `;
+      } catch (error) {
+        console.error(error);
+        cargaExitosa = false;
+        htmlFilas += `
+          <tr>
+            <td class="tk-col">${activo.ticker}</td>
+            <td>US$${activo.capAsignado.toFixed(2)} <span class="tk-sub">${activo.pctAsignado.toFixed(2)}% del portfolio</span></td>
+            <td>US$${activo.inicial.toFixed(2)}</td>
+            <td colspan="2" style="text-align:right; color:var(--red);">⚠️ Fallo de conexión</td>
+          </tr>
+        `;
       }
+    }
 
-      // Sumar al promedio del perfil correspondiente
-      if(activo.perfil === "mod"){ sumaMod += gananciaNeta; countMod++; }
-      if(activo.perfil === "agr"){ sumaAgr += gananciaNeta; countAgr++; }
+    // Insertar filas en la tabla correspondiente
+    tbody.innerHTML = htmlFilas;
 
-    } catch (error) {
-      console.error(`Error al cargar ${activo.id}:`, error);
-      const varEl = document.getElementById(`var-${activo.id}`);
-      if(varEl){
-        varEl.innerText = `Error`;
-        varEl.style.color = 'var(--red)';
-      }
+    // Actualizar cabecera de la cartera (Totales)
+    if (cargaExitosa) {
+      let varTotalPct = ((valorTotalActual / p.capital) - 1) * 100;
+      let cColor = varTotalPct > 0 ? 'var(--green)' : (varTotalPct < 0 ? 'var(--red)' : 'var(--ink)');
+      let cSign = varTotalPct > 0 ? '+' : '';
+      
+      document.getElementById(`tot-val-${p.id}`).innerText = `US$${valorTotalActual.toFixed(2)}`;
+      
+      let pctEl = document.getElementById(`tot-pct-${p.id}`);
+      pctEl.innerText = `${cSign}${varTotalPct.toFixed(2)}%`;
+      pctEl.style.color = cColor;
+    } else {
+      document.getElementById(`tot-val-${p.id}`).innerText = `US$--`;
+      document.getElementById(`tot-pct-${p.id}`).innerText = `--%`;
     }
   }
 
-  // Renderizar los promedios totales por perfil
-  if(countMod > 0){
-    const avgMod = sumaMod / countMod;
-    const totModEl = document.getElementById('tot-mod');
-    totModEl.innerText = (avgMod > 0 ? '+' : '') + avgMod.toFixed(2) + '%';
-    totModEl.style.color = avgMod > 0 ? 'var(--green)' : (avgMod < 0 ? 'var(--red)' : 'var(--muted)');
-  }
-  
-  if(countAgr > 0){
-    const avgAgr = sumaAgr / countAgr;
-    const totAgrEl = document.getElementById('tot-agr');
-    totAgrEl.innerText = (avgAgr > 0 ? '+' : '') + avgAgr.toFixed(2) + '%';
-    totAgrEl.style.color = avgAgr > 0 ? 'var(--green)' : (avgAgr < 0 ? 'var(--red)' : 'var(--muted)');
-  }
+  if(btn) btn.style.opacity = '1';
 }
 
+// Iniciar al cargar la web
 document.addEventListener('DOMContentLoaded', cargarPreciosAPI);
 </script>
 </body>
