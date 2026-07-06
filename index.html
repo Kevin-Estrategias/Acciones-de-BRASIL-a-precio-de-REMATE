@@ -295,6 +295,7 @@
 </head>
 <body>
 
+<!-- Topbar -->
 <div class="topbar">
   <div class="wrap">
     <div class="brand">
@@ -305,6 +306,7 @@
   </div>
 </div>
 
+<!-- Hero -->
 <header class="hero">
   <div class="wrap">
     <div class="flagline"><i></i><i></i><i></i></div>
@@ -315,6 +317,7 @@
   </div>
 </header>
 
+<!-- Tabs -->
 <nav class="tabsbar">
   <div class="wrap">
     <div class="tabs" role="tablist" aria-label="Secciones del informe">
@@ -327,6 +330,7 @@
 
 <main class="wrap">
 
+  <!-- ===== PANEL 1: MACRO ===== -->
   <section class="panel active" id="p1" role="tabpanel" aria-labelledby="t1">
     <div class="section-head">
       <div class="kick">La foto macroeconómica</div>
@@ -391,6 +395,7 @@
     </div>
   </section>
 
+  <!-- ===== PANEL 2: ASSETS ===== -->
   <section class="panel" id="p2" role="tabpanel" aria-labelledby="t2">
     <div class="section-head">
       <div class="kick">Desglose de activos · Julio 2026</div>
@@ -400,6 +405,7 @@
 
     <div class="assets">
 
+      <!-- EWZ -->
       <article class="asset">
         <div class="top">
           <div>
@@ -428,6 +434,7 @@
         </div>
       </article>
 
+      <!-- PBR -->
       <article class="asset">
         <div class="top">
           <div>
@@ -456,6 +463,7 @@
         </div>
       </article>
 
+      <!-- VALE -->
       <article class="asset">
         <div class="top">
           <div>
@@ -484,6 +492,7 @@
         </div>
       </article>
 
+      <!-- NU -->
       <article class="asset">
         <div class="top">
           <div>
@@ -514,12 +523,14 @@
         </div>
       </article>
 
+      <!-- Divisor de sección: nuevas incorporaciones -->
       <div class="assets-divider">
         <span class="ln"></span>
         <span class="lbl">🆕 Nuevas incorporaciones · Industrial, Bancario &amp; Fintech</span>
         <span class="ln"></span>
       </div>
 
+      <!-- EMBRAER -->
       <article class="asset">
         <div class="top">
           <div>
@@ -548,6 +559,7 @@
         </div>
       </article>
 
+      <!-- ITUB -->
       <article class="asset">
         <div class="top">
           <div>
@@ -576,6 +588,7 @@
         </div>
       </article>
 
+      <!-- XP -->
       <article class="asset">
         <div class="top">
           <div>
@@ -607,6 +620,7 @@
     </div>
   </section>
 
+  <!-- ===== PANEL 3: STRATEGIES / CARTERAS ===== -->
   <section class="panel" id="p3" role="tabpanel" aria-labelledby="t3">
     <div class="section-head">
       <div class="kick">Armado de carteras</div>
@@ -621,6 +635,7 @@
       </div>
     </div>
 
+    <!-- CARTERA MODERADA -->
     <article class="cartera-box">
       <div class="c-head mod">
         <div class="c-title">
@@ -667,6 +682,7 @@
       </div>
     </article>
 
+    <!-- CARTERA AGRESIVA -->
     <article class="cartera-box">
       <div class="c-head agr">
         <div class="c-title">
@@ -775,7 +791,7 @@ const portafolios = {
       { ticker: "PBR", query: "PBR", inicial: 15.93 },
       { ticker: "VALE", query: "VALE", inicial: 14.87 },
       { ticker: "ITUB", query: "ITUB", inicial: 8.07 },
-      { ticker: "EMBJ", query: "EMBJ", inicial: 63.02 }
+      { ticker: "EMBJ", query: "ERJ", inicial: 63.02 } // <-- Acá está la clave. Visualmente es EMBJ, pero la query es ERJ
     ]
   },
   agr: {
