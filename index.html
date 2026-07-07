@@ -83,20 +83,44 @@
   }
   h1.hero-title .g{color:var(--gold)}
   .lede{font-size:clamp(15px,2.1vw,18px);color:var(--muted);max-width:640px;font-weight:500}
+  
   .showtag{
     margin-top:22px;display:inline-flex;align-items:center;gap:10px;
     padding:8px 15px;border:1px solid var(--gold-line);border-radius:100px;
     background:var(--gold-soft);font-size:12.5px;font-weight:600;color:var(--gold);
   }
 
+  /* Widget de Rendimiento en el Hero */
+  .hero-perf {
+    display: none; /* Oculto por defecto hasta confirmar que sea positivo */
+    align-items: center;
+    gap: 10px;
+    padding: 8px 16px;
+    background: rgba(55,178,77,.15);
+    border: 1px solid rgba(55,178,77,.4);
+    border-radius: 100px;
+    color: var(--green);
+    font-weight: 700;
+    font-size: 13px;
+    cursor: pointer;
+    margin-top: 22px;
+    margin-left: 12px;
+    transition: transform 0.2s, background 0.2s;
+  }
+  .hero-perf:hover {
+    transform: translateY(-2px);
+    background: rgba(55,178,77,.25);
+  }
+  .hero-perf b { font-weight: 900; }
+
   /* ---------- Tabs ---------- */
   .tabsbar{position:sticky;top:60px;z-index:50;background:rgba(11,19,32,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);margin-top:30px}
-  .tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+  .tabs{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none; align-items:center;}
   .tabs::-webkit-scrollbar{display:none}
   .tab{
     appearance:none;background:none;border:none;cursor:pointer;
     font-family:var(--font);color:var(--muted);font-weight:600;font-size:14px;
-    padding:17px 20px;white-space:nowrap;position:relative;transition:color .2s;letter-spacing:.01em;
+    padding:17px 20px;white-space:nowrap;position:relative;transition:all .2s;letter-spacing:.01em;
     display:flex;align-items:center;gap:9px;
   }
   .tab .num{font-size:11px;font-weight:800;color:var(--muted-2);transition:color .2s}
@@ -108,6 +132,30 @@
     background:var(--gold);border-radius:2px;
   }
   .tab:focus-visible{outline:2px solid var(--blue-2);outline-offset:-3px;border-radius:6px}
+
+  /* Botón Especial Tab 3 */
+  .tab.btn-special {
+    background: linear-gradient(135deg, var(--navy-2), var(--navy-3));
+    border: 1px solid var(--gold-line);
+    border-radius: 8px;
+    padding: 10px 18px;
+    color: var(--gold);
+    margin-left: auto; /* Lo empuja a la derecha */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+  .tab.btn-special .num { color: var(--gold); opacity: 0.7; }
+  .tab.btn-special:hover {
+    background: var(--gold-soft);
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+  .tab.btn-special[aria-selected="true"] {
+    background: var(--gold);
+    color: var(--navy);
+    border-color: var(--gold);
+  }
+  .tab.btn-special[aria-selected="true"] .num { color: var(--navy); opacity: 1; }
+  .tab.btn-special[aria-selected="true"]::after { display: none; }
 
   /* ---------- Panels ---------- */
   main{padding:44px 0 10px}
@@ -286,6 +334,7 @@
     .hero{padding:38px 0 20px}
     .c-head { flex-direction: column; align-items: flex-start; }
     .c-tot { text-align: left; margin-top: 10px; }
+    .tab.btn-special { margin-left: 0; }
   }
   @media(prefers-reduced-motion:reduce){
     *{animation:none!important;transition:none!important}
@@ -313,7 +362,15 @@
     <div class="eyebrow"><span class="dot"></span> EstrategiasLB · Especial Brasil</div>
     <h1 class="hero-title">Brasil: elecciones, volatilidad<br>y <span class="g">oportunidades de valor</span></h1>
     <p class="lede">A meses de las presidenciales de octubre, el mercado descuenta escenarios y castiga los activos brasileños. Donde hay miedo, hay empresas de calidad cotizando a múltiplos de remate. Desglosamos siete activos: fundamentales, precios objetivo, dividendos y lectura técnica.</p>
-    <div class="showtag">🍷 No operamos por ideología política. Operamos por valuación.</div>
+    
+    <div style="display: flex; align-items: center; flex-wrap: wrap;">
+      <div class="showtag">🍷 No operamos por ideología política. Operamos por valuación.</div>
+      <!-- Cápsula de rendimiento que se muestra solo si es positiva -->
+      <div class="hero-perf" id="hero-perf-widget" onclick="document.getElementById('t3').click(); document.getElementById('t3').scrollIntoView({behavior: 'smooth', block: 'start'});">
+        <span class="ic">🚀</span>
+        <span>Cartera global en verde: <b id="hero-perf-val">+--%</b>. Clic para ver el desglose.</span>
+      </div>
+    </div>
   </div>
 </header>
 
@@ -323,7 +380,7 @@
     <div class="tabs" role="tablist" aria-label="Secciones del informe">
       <button class="tab" role="tab" aria-selected="true" aria-controls="p1" id="t1"><span class="num">01</span> Contexto Macro</button>
       <button class="tab" role="tab" aria-selected="false" aria-controls="p2" id="t2"><span class="num">02</span> Análisis de Activos</button>
-      <button class="tab" role="tab" aria-selected="false" aria-controls="p3" id="t3"><span class="num">03</span> Estrategias por Perfil</button>
+      <button class="tab btn-special" role="tab" aria-selected="false" aria-controls="p3" id="t3"><span class="num">03</span> Ver Rendimiento en Vivo</button>
     </div>
   </div>
 </nav>
@@ -810,7 +867,6 @@ portafolios.mod.activos.forEach(a => { a.capAsignado = 2000 / 4; a.pctAsignado =
 portafolios.agr.activos.forEach(a => { a.capAsignado = 2000 / 3; a.pctAsignado = 33.33; });
 
 async function fetchYahooPrice(ticker) {
-  // Acá está inyectada tu URL directa a Google Apps Script
   const urlAppScript = `https://script.google.com/macros/s/AKfycbzwhd_1zalTTgIBJ_IQQVVW1IiUOoBEGikDNFLpAm8QhVcVZWfrDud0VWCk3-QmvFM2/exec?ticker=${ticker}`;
   
   try {
@@ -833,6 +889,10 @@ async function fetchYahooPrice(ticker) {
 async function cargarPreciosAPI() {
   const btn = document.getElementById('btn-update');
   if(btn) btn.style.opacity = '0.5';
+
+  let granTotalInversion = 0;
+  let granTotalActual = 0;
+  let algunaFallo = false;
 
   for (let key in portafolios) {
     let p = portafolios[key];
@@ -872,6 +932,7 @@ async function cargarPreciosAPI() {
       } catch (error) {
         console.error(error);
         cargaExitosa = false;
+        algunaFallo = true;
         htmlFilas += `
           <tr>
             <td class="tk-col">${activo.ticker}</td>
@@ -886,6 +947,9 @@ async function cargarPreciosAPI() {
     tbody.innerHTML = htmlFilas;
 
     if (cargaExitosa) {
+      granTotalInversion += p.capital;
+      granTotalActual += valorTotalActual;
+
       let varTotalPct = ((valorTotalActual / p.capital) - 1) * 100;
       let cColor = varTotalPct > 0 ? 'var(--green)' : (varTotalPct < 0 ? 'var(--red)' : 'var(--ink)');
       let cSign = varTotalPct > 0 ? '+' : '';
@@ -899,6 +963,20 @@ async function cargarPreciosAPI() {
       document.getElementById(`tot-val-${p.id}`).innerText = `US$--`;
       document.getElementById(`tot-pct-${p.id}`).innerText = `--%`;
     }
+  }
+
+  // Lógica del Widget Hero: Solo aparece si ninguna conexión falló y la ganancia global es mayor a 0%
+  let widget = document.getElementById('hero-perf-widget');
+  if (!algunaFallo && granTotalInversion > 0) {
+    let pctGlobal = ((granTotalActual / granTotalInversion) - 1) * 100;
+    if (pctGlobal > 0) {
+      document.getElementById('hero-perf-val').innerText = `+${pctGlobal.toFixed(2)}%`;
+      widget.style.display = 'inline-flex';
+    } else {
+      widget.style.display = 'none';
+    }
+  } else {
+    widget.style.display = 'none';
   }
 
   if(btn) btn.style.opacity = '1';
